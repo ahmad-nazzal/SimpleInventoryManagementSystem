@@ -14,9 +14,9 @@ namespace Simple_Inventory_Management_System.ProductManagement
 
         public Product(string name, double price, int quantity)
         {
-            Name = "";
-            Price = 0;
-            Quantity = 0;
+            Name = name;
+            Price = price;
+            Quantity = quantity;
         }
 
     }
