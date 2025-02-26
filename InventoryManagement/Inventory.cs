@@ -7,14 +7,22 @@ using System.Threading.Tasks;
 
 namespace Simple_Inventory_Management_System.InventoryManagement
 {
-    public class Inventory
+    public class Inventory: IInventory
     {
-        public List<Product> Proudcts { get; }
+        public List<Product> Products { get; }
 
         public Inventory()
         {
-            Proudcts = new List<Product>();
+            Products = new List<Product>() { new Product("Apple", 1.0, 10), new Product("Banana", 0.5, 20) };
         }
+
+        public void AddProduct(string name, double price, int quantity)
+        {
+            Products.Add(new Product(name, price, quantity));
+        }
+
+
+
 
 
     }

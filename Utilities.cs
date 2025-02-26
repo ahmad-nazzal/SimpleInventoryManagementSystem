@@ -111,9 +111,22 @@ namespace Simple_Inventory_Management_System
             throw new NotImplementedException();
         }
 
-        public void AddProduct()
+        private void AddProduct()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine("************************");
+            Console.WriteLine("* Add new product *");
+            Console.WriteLine("************************");
+            Console.Write("Enter product name: ");
+            string name = Console.ReadLine() ?? "0";
+            Console.Write("Enter product price: ");
+            double price = double.Parse(Console.ReadLine() ?? "0");
+            Console.Write("Enter product quantity: ");
+            int quantity = int.Parse(Console.ReadLine() ?? "0");
+            _inventory.AddProduct(name, price, quantity);
+            Console.WriteLine("Product added successfully.");
+            Console.ReadLine();
+
         }
 
 
