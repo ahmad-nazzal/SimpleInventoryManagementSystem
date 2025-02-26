@@ -19,6 +19,7 @@ namespace Simple_Inventory_Management_System
             ViewAllProducts = 2,
             EditProduct = 3,
             SearchProduct = 4,
+            DeleteProduct = 5,
             Close = 0
         }
 
@@ -88,6 +89,10 @@ namespace Simple_Inventory_Management_System
                         SearchProduct();
                         break;
 
+                    case MainMenuOptions.DeleteProduct:
+                        DeleteProduct();
+                        break;
+
                     default:
                         Console.WriteLine("Invalid selection. Please try again.");
                         break;
@@ -125,8 +130,43 @@ namespace Simple_Inventory_Management_System
             int quantity = int.Parse(Console.ReadLine() ?? "0");
             _inventory.AddProduct(name, price, quantity);
             Console.WriteLine("Product added successfully.");
-            Console.ReadLine();
 
+        }
+        private void DeleteProduct()
+        {
+            Console.Clear();
+            Console.WriteLine("************************");
+            Console.WriteLine("* Delete Product *");
+            Console.WriteLine("************************");
+
+            Console.Write("Enter product name: ");
+            string name = Console.ReadLine()?.Trim() ?? "";
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                Console.WriteLine("Invalid product name. Please try again.");
+                return;
+            }
+
+
+            Console.Write($"Are you sure you want to delete \"{name}\"? (Y/N): ");
+            string? confirm = Console.ReadLine()?.Trim().ToLower();
+
+            if (confirm == "y")
+            {
+                if (_inventory.DeleteProduct(name))
+                {
+                    Console.WriteLine("Product deleted successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("Product not found.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Deletion canceled.");
+            }
         }
 
 

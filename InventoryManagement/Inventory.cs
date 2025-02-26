@@ -20,6 +20,18 @@ namespace Simple_Inventory_Management_System.InventoryManagement
         {
             Products.Add(new Product(name, price, quantity));
         }
+        public bool DeleteProduct(string name)
+        {
+            var product = Products.FirstOrDefault(p => string.Equals(p.Name, name, StringComparison.OrdinalIgnoreCase));
+
+            if (product == null)
+            {
+                return false;
+            }
+
+            Products.Remove(product);
+            return true;
+        }
 
 
 
