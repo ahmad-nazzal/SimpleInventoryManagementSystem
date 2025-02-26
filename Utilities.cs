@@ -204,8 +204,7 @@ namespace Simple_Inventory_Management_System
                 "Name\t\tPrice\t\tQuantity");
             foreach (var product in _inventory.GetAllProducts())
             {
-                Console.WriteLine(
-                    $"{product.Name}\t\t{product.Price}\t\t{product.Quantity}");
+                Console.WriteLine(product);
             }
         }
 

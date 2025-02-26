@@ -19,5 +19,10 @@ namespace Simple_Inventory_Management_System.ProductManagement
             Quantity = quantity;
         }
 
+        public override string ToString()
+        {
+            return $"{Name}\t\t{Price}\t\t{Quantity}";
+        }
+
     }
 }
