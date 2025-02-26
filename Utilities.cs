@@ -2,6 +2,7 @@
 using Simple_Inventory_Management_System.ProductManagement;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -220,12 +221,26 @@ namespace Simple_Inventory_Management_System
             Console.WriteLine("************************");
             Console.WriteLine("* Add new product *");
             Console.WriteLine("************************");
+
             Console.Write("Enter product name: ");
-            string name = Console.ReadLine() ?? "0";
+            string name = Console.ReadLine() ?? "Default";
+
             Console.Write("Enter product price: ");
-            double price = double.Parse(Console.ReadLine() ?? "0");
+            double price;
+            while (!double.TryParse(Console.ReadLine(), out price) || price < 0)
+            {
+                Console.WriteLine("Invalid input. Please enter a valid positive number.");
+                Console.Write("Enter the price: ");
+            }
+
             Console.Write("Enter product quantity: ");
-            int quantity = int.Parse(Console.ReadLine() ?? "0");
+            int quantity;
+            while (!int.TryParse(Console.ReadLine(), out quantity) || quantity < 0)
+            {
+                Console.WriteLine("Invalid input. Please enter a valid positive number.");
+                Console.Write("Enter the quantity: ");
+            }
+
             _inventory.AddProduct(name, price, quantity);
             Console.WriteLine("Product added successfully.");
 
