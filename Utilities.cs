@@ -97,6 +97,8 @@ namespace Simple_Inventory_Management_System
                         Console.WriteLine("Invalid selection. Please try again.");
                         break;
                 }
+                Console.WriteLine("Press Enter to continue.");
+                Console.ReadLine();
             }
             while (mainMenuOptions != MainMenuOptions.Close);
         }
