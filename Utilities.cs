@@ -92,6 +92,10 @@ namespace Simple_Inventory_Management_System
                     case MainMenuOptions.DeleteProduct:
                         DeleteProduct();
                         break;
+                    
+                    case MainMenuOptions.Close:
+                        Console.WriteLine("Closing application...");
+                        break;
 
                     default:
                         Console.WriteLine("Invalid selection. Please try again.");
