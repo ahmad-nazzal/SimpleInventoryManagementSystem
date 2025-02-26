@@ -46,6 +46,10 @@ namespace Simple_Inventory_Management_System.InventoryManagement
 
             return true;
         }
+        public List<Product> GetAllProducts()
+        {
+            return Products;
+        }
 
 
 

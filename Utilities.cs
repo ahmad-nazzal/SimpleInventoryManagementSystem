@@ -172,7 +172,17 @@ namespace Simple_Inventory_Management_System
 
         private void ShowAllProductsOverview()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine("************************");
+            Console.WriteLine("* All products *");
+            Console.WriteLine("************************");
+            Console.WriteLine(
+                "Name\t\tPrice\t\tQuantity");
+            foreach (var product in _inventory.GetAllProducts())
+            {
+                Console.WriteLine(
+                    $"{product.Name}\t\t{product.Price}\t\t{product.Quantity}");
+            }
         }
 
         private void AddProduct()
