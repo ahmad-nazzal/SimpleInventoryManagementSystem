@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_Inventory_Management_System.ProductManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace Simple_Inventory_Management_System.InventoryManagement
 {
-    interface IInventory
+    public interface IInventory
     {
+        public void AddProduct(string name, double price, int quantity);
+        public void DeleteProduct(string name);
+        public void EditProduct(Product product);
+        public void FindProduct(string productName);
+        public List<Product> GetAllProducts();
     }
 }
