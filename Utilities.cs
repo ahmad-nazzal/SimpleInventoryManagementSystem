@@ -103,7 +103,31 @@ namespace Simple_Inventory_Management_System
 
         private void SearchProduct()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine("************************");
+            Console.WriteLine("* Search Product *");
+            Console.WriteLine("************************");
+
+            Console.WriteLine(
+                "Enter the name of the product you want to search for: ");
+            string? productName = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(productName))
+            {
+                Console.WriteLine("Invalid input. Please enter a valid product name.");
+                return;
+            }
+
+            Product? product = _inventory.FindProduct(productName);
+            if (product == null)
+            {
+                Console.WriteLine("Product not found.");
+            }
+            else
+            {
+                Console.WriteLine(
+                    $"Name: {product.Name}\nPrice: {product.Price}\nQuantity: {product.Quantity}");
+            }
         }
 
         private void EditProduct()

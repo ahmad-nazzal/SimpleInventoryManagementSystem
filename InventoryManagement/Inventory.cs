@@ -51,6 +51,12 @@ namespace Simple_Inventory_Management_System.InventoryManagement
             return Products;
         }
 
+        public Product? FindProduct(string productName)
+        {
+            return Products.FirstOrDefault(p =>
+                string.Equals(p.Name, productName, StringComparison.OrdinalIgnoreCase));
+        }
+
 
 
 
