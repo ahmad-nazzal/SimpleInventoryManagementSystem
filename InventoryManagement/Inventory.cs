@@ -18,6 +18,9 @@ namespace Simple_Inventory_Management_System.InventoryManagement
 
         public void AddProduct(string name, double price, int quantity)
         {
+            if (price < 0) throw new ArgumentException("Price cannot be negative");
+            if (quantity < 0) throw new ArgumentException("Quantity cannot be negative");
+
             Products.Add(new Product(name, price, quantity));
         }
         public bool DeleteProduct(string name)
