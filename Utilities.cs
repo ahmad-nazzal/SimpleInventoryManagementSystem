@@ -108,7 +108,66 @@ namespace Simple_Inventory_Management_System
 
         private void EditProduct()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine("************************");
+            Console.WriteLine("* Edit Product *");
+            Console.WriteLine("************************");
+
+            Console.Write("Enter the name of the product you want to edit (Press Enter to cancel): ");
+            string? name = Console.ReadLine()?.Trim();
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                Console.WriteLine("Edit canceled. Product name cannot be empty.");
+                return;
+            }
+
+            var existingProduct = _inventory.GetAllProducts().FirstOrDefault(p => string.Equals(p.Name, name, StringComparison.OrdinalIgnoreCase));
+            if (existingProduct == null)
+            {
+                Console.WriteLine("Product not found.");
+                return;
+            }
+
+            Console.Write("New product name (Press Enter to keep old value): ");
+            string? newNameString = Console.ReadLine()?.Trim();
+            string newName = string.IsNullOrWhiteSpace(newNameString) ? existingProduct.Name : newNameString;
+
+
+            Console.Write("New product price (Press Enter to keep old value): ");
+            string? newPriceString = Console.ReadLine()?.Trim();
+            double newPrice;
+            if (!double.TryParse(newPriceString, out newPrice))
+            {
+                newPrice = existingProduct.Price;
+            }
+
+            Console.WriteLine(
+                "New product quantity: ");
+            string newQuantityString = Console.ReadLine()?.Trim() ?? "";
+            int newQuantity = string.IsNullOrWhiteSpace(newQuantityString) ? -1 : int.Parse(newQuantityString);
+            Console.WriteLine(
+                "Are you sure you want to edit this product? (Y/N)");
+            string confirm = Console.ReadLine()?.Trim().ToLower() ?? "";
+            if (confirm == "y")
+            {
+                if (_inventory.EditProduct(name, new Product(newName, newPrice, newQuantity)))
+                {
+                    Console.WriteLine("Product edited successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("Product not found.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Edit canceled.");
+            }
+            Console.WriteLine(
+                "Press Enter to return to the main menu.");
+            Console.ReadLine();
+
         }
 
         private void ShowAllProductsOverview()

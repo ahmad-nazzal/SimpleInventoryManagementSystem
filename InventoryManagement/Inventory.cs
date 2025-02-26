@@ -33,6 +33,20 @@ namespace Simple_Inventory_Management_System.InventoryManagement
             return true;
         }
 
+        public bool EditProduct(string productName, Product newProduct)
+        {
+            var existingProduct = Products.FirstOrDefault(p => string.Equals(p.Name, productName, StringComparison.OrdinalIgnoreCase));
+            if (existingProduct == null)
+            {
+                return false;
+            }
+            existingProduct.Name = string.IsNullOrWhiteSpace(newProduct.Name) ? existingProduct.Name : newProduct.Name;
+            existingProduct.Price = newProduct.Price < 0 ? existingProduct.Price : newProduct.Price;
+            existingProduct.Quantity = newProduct.Quantity < 0 ? existingProduct.Quantity : newProduct.Quantity;
+
+            return true;
+        }
+
 
 
 
