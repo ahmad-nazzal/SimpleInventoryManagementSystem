@@ -1,2 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿
+using Simple_Inventory_Management_System;
+using Simple_Inventory_Management_System.InventoryManagement;
+
+IInventory inventory = new Inventory();
+Utilities utilities = new Utilities(inventory);
+utilities.Run();
