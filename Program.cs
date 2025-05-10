@@ -1,7 +1,12 @@
 ﻿
 using Simple_Inventory_Management_System;
+using Simple_Inventory_Management_System.Data;
 using Simple_Inventory_Management_System.InventoryManagement;
+using DotNetEnv;
 
-IInventory inventory = new Inventory();
+Env.Load();
+
+IProductRepository productRepository = new SqlProductRepository();
+IInventory inventory = new Inventory(productRepository);
 Utilities utilities = new Utilities(inventory);
 utilities.Run();

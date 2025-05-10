@@ -41,3 +41,4 @@ appsettings.Local.json
 
 # Ignore generated files
 Generated_Code/
+.env
