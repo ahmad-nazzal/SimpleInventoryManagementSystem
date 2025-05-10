@@ -6,7 +6,7 @@ using DotNetEnv;
 
 Env.Load();
 
-IProductRepository productRepository = new SqlProductRepository();
+IProductRepository productRepository = new MongoProductRepository();
 IInventory inventory = new Inventory(productRepository);
 Utilities utilities = new Utilities(inventory);
 utilities.Run();

@@ -1,6 +1,6 @@
-﻿using Simple_Inventory_Management_System.InventoryManagement;
+﻿using Microsoft.Data.SqlClient;
+using Simple_Inventory_Management_System.InventoryManagement;
 using Simple_Inventory_Management_System.ProductManagement;
-using Microsoft.Data.SqlClient;
 
 namespace Simple_Inventory_Management_System.Data
 {
