@@ -9,11 +9,11 @@ namespace Simple_Inventory_Management_System.InventoryManagement
 {
     public class Inventory: IInventory
     {
-        public List<Product> Products { get; }
+        private readonly IProductRepository _productRepository;
 
-        public Inventory()
+        public Inventory(IProductRepository _productRepository)
         {
-            Products = new List<Product>() { new Product("Apple", 1.0, 10), new Product("Banana", 0.5, 20) };
+            this._productRepository = _productRepository;
         }
 
         public void AddProduct(string name, double price, int quantity)
@@ -21,43 +21,26 @@ namespace Simple_Inventory_Management_System.InventoryManagement
             if (price < 0) throw new ArgumentException("Price cannot be negative");
             if (quantity < 0) throw new ArgumentException("Quantity cannot be negative");
 
-            Products.Add(new Product(name, price, quantity));
+            _productRepository.Add(new Product(name, price, quantity));
         }
         public bool DeleteProduct(string name)
         {
-            var product = Products.FirstOrDefault(p => string.Equals(p.Name, name, StringComparison.OrdinalIgnoreCase));
-
-            if (product == null)
-            {
-                return false;
-            }
-
-            Products.Remove(product);
-            return true;
+            return _productRepository.Delete(name);
         }
 
         public bool EditProduct(string productName, Product newProduct)
         {
-            var existingProduct = Products.FirstOrDefault(p => string.Equals(p.Name, productName, StringComparison.OrdinalIgnoreCase));
-            if (existingProduct == null)
-            {
-                return false;
-            }
-            existingProduct.Name = string.IsNullOrWhiteSpace(newProduct.Name) ? existingProduct.Name : newProduct.Name;
-            existingProduct.Price = newProduct.Price < 0 ? existingProduct.Price : newProduct.Price;
-            existingProduct.Quantity = newProduct.Quantity < 0 ? existingProduct.Quantity : newProduct.Quantity;
-
-            return true;
+            return _productRepository.Update(productName, newProduct);
         }
         public List<Product> GetAllProducts()
         {
-            return Products;
+            return _productRepository.GetAll();
         }
 
         public Product? FindProduct(string productName)
         {
-            return Products.FirstOrDefault(p =>
-                string.Equals(p.Name, productName, StringComparison.OrdinalIgnoreCase));
+            return _productRepository.Find(productName);
+
         }
 
 
